@@ -1,0 +1,18 @@
+#playbook
+---
+- hosts: Matveev
+  become: true
+
+  tasks:
+  - name: "Installing cowsay"
+    ansible.builtin.apt:
+      name: cowsay
+      state: present
+
+  - name: "Installing cmatrix"
+    apt: pkg=cmatrix state=present
+
+  - name: "Installing sl"
+    apt: pkg=sl  state=present
+...
+

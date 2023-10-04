@@ -1,0 +1,7 @@
+[example_devices]
+192.168.88.21
+
+[Matveev]
+192.168.88.21 ansible_ssh_user=xal ansible_sudo_pass=111
+
+
