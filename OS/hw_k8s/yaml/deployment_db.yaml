@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dbmatveev-deployment
+  labels:
+    app: dbmatveev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dbmatveev
+  template:
+    metadata:
+      labels:
+        app: dbmatveev
+    spec:
+      containers:
+      - name: dbmatveev
+        image: alxmatweew/matveev_mysql:0.25
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: dbmatveev-secret
+              key: password
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: dbmatveev-service
+spec:
+  selector:
+    app: dbmatveev
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
